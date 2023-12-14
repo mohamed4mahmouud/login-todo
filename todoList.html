@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+
+      #task {
+        padding: 10px;
+        width: 300px;
+      }
+
+      #add-Btn {
+        padding: 10px;
+      }
+
+      #list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      .item .task {
+        flex-grow: 1;
+        margin-right: 10px;
+      }
+
+      .item .delete-btn {
+        background-color: #ff3333;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .item .done-btn {
+        background-color: #33cc33;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <ul id="list"></ul>
+      <label for="task">Task</label>
+      <input type="text" id="task" placeholder="Task name" />
+      <button type="button" id="add-btn" onclick="add()">Add</button>
+    </div>
+    <script>
+      function add() {
+        var task = document.getElementById("task").value;
+        var list = document.getElementById("list");
+
+        var li = document.createElement("li");
+        li.className = "item";
+
+        var content = document.createElement("div");
+        content.className = task;
+        content.textContent = task;
+
+        var div = document.getElementById("main");
+
+        var doneBtn = document.createElement("button");
+        doneBtn.className = "done-btn";
+        doneBtn.textContent = "done";
+        doneBtn.onclick = function () {
+          content.style.backgroundColor = "#00ff00";
+        };
+
+        var deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "delete";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.onclick = function () {
+          li.remove();
+        };
+
+        li.appendChild(content);
+        li.appendChild(doneBtn);
+        li.appendChild(deleteBtn);
+
+        list.appendChild(li);
+      }
+    </script>
+  </body>
+</html>
